@@ -1,30 +1,43 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ScheduleButton from "../../components/ScheduleButton/ScheduleButton";
+import { register } from "@/services/auth.service";
 
 const Register = () => {
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
-
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Register data:", formData);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError(null)
+    setLoading(true)
+
+    try {
+      const data = await register(formData)
+      console.log('Register success:', data)
+      // Après inscription, redirige vers login
+      navigate('/login')
+    } catch (err) {
+      console.error(err)
+      setError('Une erreur est survenue lors de l’inscription')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="min-h-screen px-[10%] text-black flex">
@@ -141,13 +154,12 @@ const Register = () => {
 
             {/* SUBMIT */}
             <div className="pt-12">
-              <button
-                type="submit"
-                className=""
-              >
-                 <ScheduleButton text='S’INSCRIRE' />
-                
-              </button>
+            <button className="relative" type="submit" disabled={loading}>
+          <span className="absolute inset-0 bg-black rounded-full translate-x-[3px] translate-y-[3px]" />
+          <span className="relative px-7 py-3 bg-[#6ED3C2] border-2 border-black rounded-full font-serif flex gap-3 items-center">
+            S'inscrire
+          </span>
+        </button>
             </div>
 
           </form>

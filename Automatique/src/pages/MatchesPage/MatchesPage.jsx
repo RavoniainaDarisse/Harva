@@ -53,14 +53,14 @@ const mockScholarships = [
 
 export default function MatchesPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen font-serif bg-[#fffaf5]">
 
       {/* HEADER */}
-      <header className="sticky top-0 z-50 border-b bg-card/95 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b bg-[#fffaf5] backdrop-blur">
         <div className="container flex items-center justify-between px-4 py-4 mx-auto">
 
           <a href="/" className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-chart-1">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl to-chart-1">
               <Shield className="w-5 h-5 text-primary-foreground" />
             </div>
             <div>
@@ -69,7 +69,7 @@ export default function MatchesPage() {
             </div>
           </a>
 
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" className="bg-[#fffaf5]" size="sm" asChild>
             <a href="/">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Retour
@@ -88,12 +88,12 @@ export default function MatchesPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 border rounded-full bg-card">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 border rounded-full ">
               <TrendingUp className="w-5 h-5 text-primary" />
               <span className="font-medium">Bourses correspondantes</span>
             </div>
 
-            <h2 className="mb-3 text-3xl font-bold md:text-4xl">
+            <h2 className="mb-3 text-3xl font-bold font-serif md:text-4xl">
               Tes meilleures opportunités
             </h2>
 
@@ -111,12 +111,12 @@ export default function MatchesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="p-6 transition-all md:p-8 hover:shadow-lg">
+                <Card className="p-6 transition-all md:p-8 hover:shadow-lg bg-[#fffaf5]">
 
                   {/* TOP */}
                   <div className="flex flex-col gap-4 mb-6 md:flex-row md:items-start md:justify-between">
                     <div className="flex-1">
-                      <h3 className="mb-2 text-xl font-bold">{s.name}</h3>
+                      <h3 className="mb-2 text-xl font-bold font-serif">{s.name}</h3>
                       <p className="text-sm text-muted-foreground">
                         {s.description}
                       </p>
@@ -165,7 +165,7 @@ export default function MatchesPage() {
 
           {/* BOTTOM CTA */}
           <motion.div
-            className="p-8 mt-12 text-center border rounded-2xl bg-gradient-to-br from-primary/10 to-chart-1/10"
+            className="p-8 mt-12 text-center border rounded-2xl to-chart-1/10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}

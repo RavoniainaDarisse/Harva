@@ -99,11 +99,11 @@ body {
     @apply border border-white/20;
   }
 
-  .nav-hover-btn {
+  /* .nav-hover-btn {
     @apply relative ms-10 font-general text-xs uppercase text-blue-50 after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white cursor-pointer;
-  }
+  } */
 
-  .floating-nav {
+  /* .floating-nav {
     @apply bg-black border rounded-lg;
   }
 
@@ -113,7 +113,7 @@ body {
 
   .flex-center {
     @apply flex items-center justify-center;
-  }
+  } */
 
   .mask-clip-path {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -124,7 +124,7 @@ body {
     font-feature-settings: "ss01" on;
   }
 
-  .hero-heading {
+  /* .hero-heading {
     @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
   }
 
@@ -196,7 +196,7 @@ body {
 
   .contact-clip-path-2 {
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
-  }
+  } */
 }
 
 .indicator-line {

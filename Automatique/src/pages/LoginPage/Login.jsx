@@ -1,28 +1,57 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ScheduleButton from '../../components/ScheduleButton/ScheduleButton';
+import { login } from '@/services/auth.service';
 
 
 const Login = () => {
+
+  const navigate = useNavigate()
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login data:', formData);
-  };
+
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError(null)
+    setLoading(true)
+  
+    try {
+      const data = await login(formData.email, formData.password)
+      console.log('Login data:', data) // 👈 ajoute ça
+      navigate('/match')
+    } catch (err) {
+      console.log(err)
+      setError('Email ou mot de passe incorrect')
+    } finally {
+      setLoading(false)
+    }
+  }
+  
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('Login data:', formData);
+  // };
 
   return (
     <div className="min-h-screen px-[10%]  flex">
@@ -104,12 +133,24 @@ const Login = () => {
               </div>
             </div>
             <div className="pt-12">
-            <button
-                type="submit"
-                className=""
-                >
-              <ScheduleButton text='se connectez' />
-              </button>
+              {/* <button type="submit" disabled={loading}>
+                <ScheduleButton text={loading ? 'Connexion...' : 'Se connecter'} />
+              </button> */}
+
+              <button className="relative" type="submit" disabled={loading}>
+          <span className="absolute inset-0 bg-black rounded-full translate-x-[3px] translate-y-[3px]" />
+          <span className="relative px-7 py-3 bg-[#6ED3C2] border-2 border-black rounded-full font-serif flex gap-3 items-center">
+            Se connectez
+          </span>
+        </button>
+
+              {error && (
+                <p className="text-sm text-red-600">
+                  {error}
+                </p>
+              )}
+
+
             </div>
           </form>
         </div>

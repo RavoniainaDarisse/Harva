@@ -1,411 +1,281 @@
-// import { useState } from "react"
-// import { motion } from "framer-motion"
-// import { Shield, User, Upload, Plus, X, ArrowLeft, Save } from "lucide-react"
-
-// import { Button } from "@/components/ui/button"
-// import { Input } from "@/components/ui/input"
-// import { Textarea } from "@/components/ui/textarea"
-// import { Card } from "@/components/ui/card"
-// import { Label } from "@/components/ui/label"
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select"
-// import { useToast } from "@/hooks/use-toast"
-
-// export default function ProfilePage() {
-//   const { toast } = useToast()
-
-//   const [diplomas, setDiplomas] = useState([])
-//   const [certifications, setCertifications] = useState([])
-//   const [languages, setLanguages] = useState([])
-
-//   const [newDiploma, setNewDiploma] = useState("")
-//   const [newCert, setNewCert] = useState("")
-//   const [newLang, setNewLang] = useState("")
-//   const [isSubmitting, setIsSubmitting] = useState(false)
-
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     country: "",
-//     level: "",
-//     experience: "",
-//   })
-
-//   const addItem = (value, setter, current, reset) => {
-//     if (value.trim()) {
-//       setter([...current, value.trim()])
-//       reset()
-//     }
-//   }
-
-//   const removeItem = (index, setter, current) => {
-//     setter(current.filter((_, i) => i !== index))
-//   }
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     setIsSubmitting(true)
-
-//     try {
-//       const response = await fetch("/api/profile", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({
-//           ...formData,
-//           diplomas,
-//           certifications,
-//           languages,
-//         }),
-//       })
-
-//       if (!response.ok) throw new Error("Erreur")
-
-//       toast({
-//         title: "Profil enregistré !",
-//         description: "Ton profil a été sauvegardé avec succès.",
-//       })
-
-//       setTimeout(() => {
-//         window.location.href = "/matches"
-//       }, 1500)
-//     } catch (err) {
-//       toast({
-//         title: "Erreur",
-//         description: "Impossible d'enregistrer le profil.",
-//         variant: "destructive",
-//       })
-//     } finally {
-//       setIsSubmitting(false)
-//     }
-//   }
-
-//   return (
-//     <div className="min-h-screen bg-background">
-//       {/* Header */}
-//       <header className="sticky top-0 z-50 border-b bg-card/95 backdrop-blur">
-//         <div className="container px-4 py-4 mx-auto">
-//           <div className="flex items-center justify-between">
-//             <a href="/" className="flex items-center gap-3">
-//               <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-chart-1">
-//                 <Shield className="w-5 h-5 text-primary-foreground" />
-//               </div>
-//               <div>
-//                 <h1 className="text-lg font-bold">Bourse-Guard</h1>
-//                 <p className="text-xs text-muted-foreground">Profil</p>
-//               </div>
-//             </a>
-
-//             <Button variant="outline" size="sm" asChild>
-//               <a href="/">
-//                 <ArrowLeft className="w-4 h-4 mr-2" />
-//                 Retour
-//               </a>
-//             </Button>
-//           </div>
-//         </div>
-//       </header>
-
-//       <main className="container px-4 py-12 mx-auto">
-//         <div className="max-w-3xl mx-auto">
-//           {/* Title */}
-//           <motion.div
-//             className="mb-8 text-center"
-//             initial={{ opacity: 0, y: -20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//           >
-//             <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 border rounded-full bg-card">
-//               <User className="w-5 h-5 text-primary" />
-//               <span className="font-medium">Mon profil académique</span>
-//             </div>
-//             <h2 className="mb-3 text-3xl font-bold md:text-4xl">
-//               Complète ton profil
-//             </h2>
-//             <p className="text-lg text-muted-foreground">
-//               Plus ton profil est complet, meilleurs seront tes matches
-//             </p>
-//           </motion.div>
-
-//           <Card className="p-6 md:p-8">
-//             <form className="space-y-8" onSubmit={handleSubmit}>
-//               {/* --- LE RESTE DU JSX EST STRICTEMENT IDENTIQUE --- */}
-
-//               {/* Submit */}
-//               <div className="flex gap-3">
-//                 <Button type="submit" className="flex-1" size="lg" disabled={isSubmitting}>
-//                   {isSubmitting ? (
-//                     <>
-//                       <motion.div
-//                         animate={{ rotate: 360 }}
-//                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-//                       >
-//                         <Save className="w-5 h-5 mr-2" />
-//                       </motion.div>
-//                       Enregistrement...
-//                     </>
-//                   ) : (
-//                     <>
-//                       <Save className="w-5 h-5 mr-2" />
-//                       Sauvegarder le profil
-//                     </>
-//                   )}
-//                 </Button>
-
-//                 <Button variant="outline" size="lg" asChild>
-//                   <a href="/matches">Voir mes matches</a>
-//                 </Button>
-//               </div>
-//             </form>
-//           </Card>
-//         </div>
-//       </main>
-//     </div>
-//   )
-// }
-
-
-
-// src/pages/ProfilePage.jsx
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Shield, User, Upload, Plus, X, ArrowLeft, Save } from "lucide-react"
-
+import { Shield, User, Plus, X, ArrowLeft, Save } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import {
   Select,
-  SelectContent,
-  SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectContent,
+  SelectItem,
 } from "@/components/ui/select"
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog"
+
+
 import { useToast } from "@/hooks/use-toast"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { saveProfile } from "@/services/profile.service"
 
 export default function ProfilePage() {
   const { toast } = useToast()
-
-  const [diplomas, setDiplomas] = useState([])
-  const [certifications, setCertifications] = useState([])
-  const [languages, setLanguages] = useState([])
-
-  const [newDiploma, setNewDiploma] = useState("")
-  const [newCert, setNewCert] = useState("")
-  const [newLang, setNewLang] = useState("")
+  const navigate = useNavigate()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  const [openDialog, setOpenDialog] = useState(false)
+  const [saveStatus, setSaveStatus] = useState(null) // "success" | "error"
+
+
+  const [autresLangues, setAutresLangues] = useState([])
+  const [recompenses, setRecompenses] = useState([])
+  const [newLangue, setNewLangue] = useState("")
+  const [newRecompense, setNewRecompense] = useState("")
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    country: "",
-    level: "",
-    experience: "",
+    telephone: "",
+    sexe: "",
+    nationalite: "",
+    ville_residence: "",
+    parcours_academique: "",
+    niveau_etude_actuel: "",
+    domaine_etude: "",
+    etablissement_actuel: "",
+    moyenne_generale: "",
+    annee_diplome_prevue: "",
+    langue: "",
+    niveau_francais: "",
+    niveau_anglais: "",
+    date_naissance: "",
+    experiences_academiques: "",
+    activites_extrascolaires: "",
+    engagement_associatif: "",
   })
-
-  const addItem = (value, setter, list, reset) => {
-    if (!value.trim()) return
-    setter([...list, value.trim()])
-    reset("")
-  }
-
-  const removeItem = (index, setter, list) => {
-    setter(list.filter((_, i) => i !== index))
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
 
     try {
-      const res = await fetch("/api/profile", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          diplomas,
-          certifications,
-          languages,
-        }),
+      await saveProfile({
+        ...formData,
+        autres_langues: autresLangues,
+        recompenses_distinctions: recompenses,
       })
-
-      if (!res.ok) throw new Error()
+      
+      setSaveStatus("success")
+      setOpenDialog(true)
 
       toast({
         title: "Profil enregistré",
         description: "Ton profil a été sauvegardé avec succès",
       })
 
-      setTimeout(() => {
-        window.location.href = "/matches"
-      }, 1500)
+      // setTimeout(() => navigate("/matches"), 1500)
     } catch {
       toast({
         title: "Erreur",
         description: "Impossible d'enregistrer le profil",
-        variant: "error",
+        variant: "destructive",
       })
+
+      setSaveStatus("error")
+    setOpenDialog(true)
     } finally {
       setIsSubmitting(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#fffaf5]">
+
+<Dialog open={openDialog} onOpenChange={setOpenDialog}>
+  <DialogContent className="max-w-md">
+    <DialogHeader>
+      <DialogTitle className="text-xl">
+        {saveStatus === "success"
+          ? "Profil enregistré ✅"
+          : "Erreur ❌"}
+      </DialogTitle>
+
+      <DialogDescription className="pt-2">
+        {saveStatus === "success"
+          ? "Ton profil a été enregistré avec succès."
+          : "Une erreur est survenue lors de l'enregistrement du profil."}
+      </DialogDescription>
+    </DialogHeader>
+
+    <DialogFooter className="flex justify-end gap-2">
+      {saveStatus === "success" && (
+        <Button onClick={() => navigate("/match")}>
+          Continuer
+        </Button>
+      )}
+
+      <Button
+        variant="outline"
+        onClick={() => setOpenDialog(false)}
+      >
+        Fermer
+      </Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+
       {/* HEADER */}
-      <header className="sticky top-0 z-50 border-b bg-card">
-        <div className="container flex items-center justify-between px-4 py-4 mx-auto">
-          <a href="/" className="flex items-center gap-3">
+      <header className="sticky top-0 z-50 border-b bg-[#fffaf5]">
+        <div className="w-full flex items-center justify-between px-6 py-4">
+          <Link to="/" className="flex items-center gap-3">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary">
               <Shield className="w-5 h-5 text-white" />
             </div>
             <div>
               <h1 className="font-bold">Bourse-Guard</h1>
-              <p className="text-xs text-muted">Profil</p>
+              <p className="text-xs text-muted-foreground">Profil académique</p>
             </div>
-          </a>
-          <Link to="/">
-          <Button variant="outline">
-          
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Retour
-          </Button>
           </Link>
 
+          <Button variant="outline" className="bg-[#fffaf5]" size="sm" asChild>
+            <a href="/">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Retour
+            </a>
+          </Button>
         </div>
       </header>
 
-      <main className="container px-4 py-12 mx-auto">
-        <div className="max-w-3xl mx-auto">
-          {/* TITLE */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-8 text-center"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 border rounded-full">
+      {/* CONTENT */}
+      <main className="w-full  px-6 py-10">
+        <motion.form
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="w-full space-y-16"
+        >
+          {/* SECTION 1 */}
+          <section>
+            <h2 className="mb-6 text-2xl font-bold flex items-center gap-2">
               <User className="w-5 h-5 text-primary" />
-              <span>Mon profil académique</span>
-            </div>
-            <h2 className="mb-2 text-3xl font-bold">
-              Complète ton profil
+              Informations personnelles
             </h2>
-            <p className="text-muted">
-              Un profil complet améliore les résultats
-            </p>
-          </motion.div>
 
-          <Card className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* INFOS */}
-              <div className="grid gap-4 md:grid-cols-2">
-                <div>
-                  <Label>Nom complet</Label>
-                  <Input
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
+              <Field label="Téléphone">
+                <Input />
+              </Field>
 
-                <div>
-                  <Label>Email</Label>
-                  <Input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
+              <Field label="Sexe">
+                <Select >
+                  <SelectTrigger className="h-14">
+                    <SelectValue placeholder="Sélectionner" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#fffaf5]">
+                    <SelectItem value="M">Masculin</SelectItem>
+                    <SelectItem value="F">Féminin</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
 
-              <div>
-                <Label>Pays</Label>
-                <Input
-                  value={formData.country}
-                  onChange={(e) =>
-                    setFormData({ ...formData, country: e.target.value })
-                  }
-                />
-              </div>
+              <Field label="Nationalité">
+                <Input />
+              </Field>
 
-              <div>
-                <Label>Niveau d’étude</Label>
-                <Select
-                  value={formData.level}
-                  onChange={(e) =>
-                    setFormData({ ...formData, level: e.target.value })
-                  }
-                  options={[
-                    "Licence",
-                    "Master",
-                    "Doctorat",
-                  ]}
-                />
-              </div>
+              <Field label="Ville de résidence">
+                <Input />
+              </Field>
 
-              <div>
-                <Label>Expérience</Label>
-                <Textarea
-                  rows={4}
-                  value={formData.experience}
-                  onChange={(e) =>
-                    setFormData({ ...formData, experience: e.target.value })
-                  }
-                />
-              </div>
+              <Field label="Date de naissance">
+                <Input type="date" />
+              </Field>
+            </div>
+          </section>
 
-              {/* LISTES */}
-              {[
-                ["Diplômes", newDiploma, setNewDiploma, diplomas, setDiplomas],
-                ["Certifications", newCert, setNewCert, certifications, setCertifications],
-                ["Langues", newLang, setNewLang, languages, setLanguages],
-              ].map(([title, value, setValue, list, setList]) => (
-                <div key={title}>
-                  <Label>{title}</Label>
-                  <div className="flex gap-2">
-                    <Input value={value} onChange={(e) => setValue(e.target.value)} />
-                    <Button
-                      type="button"
-                      onClick={() => addItem(value, setList, list, setValue)}
-                    >
-                      <Plus className="w-4 h-4" />
-                    </Button>
-                  </div>
+          {/* SECTION 2 */}
+          <section>
+            <h2 className="mb-6 text-2xl font-bold">
+              Parcours académique
+            </h2>
 
-                  <ul className="mt-2 space-y-2">
-                    {list.map((item, i) => (
-                      <li key={i} className="flex justify-between p-2 border rounded">
-                        {item}
-                        <button
-                          type="button"
-                          onClick={() => removeItem(i, setList, list)}
-                        >
-                          <X className="w-4 h-4 text-red-500" />
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
+              <Field label="Parcours académique">
+                <Input />
+              </Field>
 
-              {/* SUBMIT */}
-              <Button type="submit" disabled={isSubmitting} className="w-full">
-                {isSubmitting ? "Enregistrement..." : "Sauvegarder le profil"}
-                <Save className="w-4 h-4 ml-2" />
-              </Button>
-            </form>
-          </Card>
-        </div>
+              <Field label="Niveau d’étude">
+                <Select>
+                  <SelectTrigger className="h-14">
+                    <SelectValue placeholder="Sélectionner" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#fffaf5]">
+                    <SelectItem value="Licence">Licence</SelectItem>
+                    <SelectItem value="Master">Master</SelectItem>
+                    <SelectItem value="Doctorat">Doctorat</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
+
+              <Field label="Domaine d’étude">
+                <Input />
+              </Field>
+
+              <Field label="Établissement actuel">
+                <Input />
+              </Field>
+
+              <Field label="Moyenne générale">
+                <Input />
+              </Field>
+
+              <Field label="Année diplôme prévue">
+                <Input type="number" />
+              </Field>
+            </div>
+          </section>
+
+          {/* SECTION 3 */}
+          <section className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+            <TextareaBlock label="Expériences académiques" />
+            <TextareaBlock label="Activités extrascolaires" />
+            <TextareaBlock label="Engagement associatif" />
+          </section>
+
+          {/* SUBMIT */}
+          <div className="flex justify-end">
+            <Button type="submit" disabled={isSubmitting} className="h-12 px-10">
+              Sauvegarder
+              <Save className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </motion.form>
       </main>
+    </div>
+  )
+}
+
+/* UI helpers */
+function Field({ label, children }) {
+  return (
+    <div className="space-y-1">
+      <Label>{label}</Label>
+      {children}
+    </div>
+  )
+}
+
+function TextareaBlock({ label }) {
+  return (
+    <div>
+      <Label>{label}</Label>
+      <Textarea rows={6} />
     </div>
   )
 }
