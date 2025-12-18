@@ -1,0 +1,249 @@
+{
+  "examples": {
+    "profile_basic": {
+      "description": "Profil minimal avec seulement les champs obligatoires",
+      "data": {
+        "sexe": "M",
+        "nationalite": "Français"
+      }
+    },
+    "profile_standard": {
+      "description": "Profil avec les informations essentielles",
+      "data": {
+        "telephone": "+33612345678",
+        "sexe": "M",
+        "nationalite": "Français",
+        "niveau_etude_actuel": "Licence 3",
+        "domaine_etude": "Informatique",
+        "moyenne_generale": "14.5",
+        "niveau_francais": "Natif",
+        "niveau_anglais": "Fluent (C1)"
+      }
+    },
+    "profile_complete": {
+      "description": "Profil avec toutes les informations complètes",
+      "data": {
+        "telephone": "+33612345678",
+        "sexe": "M",
+        "nationalite": "Français",
+        "ville_residence": "Paris",
+        "parcours_academique": "Baccalauréat Scientifique 2020",
+        "niveau_etude_actuel": "Licence 3",
+        "domaine_etude": "Informatique",
+        "etablissement_actuel": "Université Paris-Dauphine",
+        "moyenne_generale": "14.5",
+        "annee_diplome_prevue": "2026",
+        "langue": "Français",
+        "niveau_francais": "Natif",
+        "niveau_anglais": "Fluent (C1)",
+        "date_naissance": "2003-05-15",
+        "autres_langues": [
+          "Espagnol B2",
+          "Allemand A2"
+        ],
+        "experiences_academiques": "Stage chez Google été 2024, Stage chez Microsoft hiver 2023",
+        "activites_extrascolaires": "Tennis, Débat oratoire, Programmation compétitive",
+        "engagement_associatif": "Président du club informatique, Trésorier association étudiante",
+        "recompenses_distinctions": [
+          "Bourse d'excellence académique",
+          "Prix de programmation 2024",
+          "Scholarship recognition"
+        ]
+      }
+    },
+    "profile_feminin": {
+      "description": "Profil exemple féminin",
+      "data": {
+        "telephone": "+33698765432",
+        "sexe": "F",
+        "nationalite": "Française",
+        "ville_residence": "Lyon",
+        "parcours_academique": "Baccalauréat Scientifique Spécialité Mathématiques 2021",
+        "niveau_etude_actuel": "Master 1",
+        "domaine_etude": "Génie Logiciel",
+        "etablissement_actuel": "INSA Lyon",
+        "moyenne_generale": "16.8",
+        "annee_diplome_prevue": "2025",
+        "langue": "Français",
+        "niveau_francais": "Excellent (C2)",
+        "niveau_anglais": "Advanced (C1)",
+        "date_naissance": "2002-03-22",
+        "autres_langues": [
+          "Chinois A1",
+          "Japonais A2"
+        ],
+        "experiences_academiques": "Apprenticeship chez Capgemini, Internship chez Orange 2024",
+        "activites_extrascolaires": "Badminton, Robotique, Photography",
+        "engagement_associatif": "Vice-présidente BDE, Organisatrice hackathon",
+        "recompenses_distinctions": [
+          "Best Female Engineer 2024",
+          "Innovation Prize"
+        ]
+      }
+    },
+    "profile_international": {
+      "description": "Profil d'un étudiant international",
+      "data": {
+        "telephone": "+1-555-0123",
+        "sexe": "M",
+        "nationalite": "Américaine",
+        "ville_residence": "Paris",
+        "parcours_academique": "Bachelor of Science USA 2022",
+        "niveau_etude_actuel": "Master 2",
+        "domaine_etude": "Data Science",
+        "etablissement_actuel": "Université Paris-Saclay",
+        "moyenne_generale": "3.8",
+        "annee_diplome_prevue": "2025",
+        "langue": "Anglais",
+        "niveau_francais": "Intermediate (B1)",
+        "niveau_anglais": "Native",
+        "date_naissance": "2001-07-14",
+        "autres_langues": [
+          "Français B1",
+          "Espagnol A2"
+        ],
+        "experiences_academiques": "Internship at Microsoft Seattle 2024, Research Assistant at MIT 2023",
+        "activites_extrascolaires": "Basketball, Machine Learning Competitions, Startup Mentor",
+        "engagement_associatif": "President International Students Association, Ambassador Program",
+        "recompenses_distinctions": [
+          "Fulbright Scholar",
+          "IEEE Student Award"
+        ]
+      }
+    },
+    "profile_multiple_languages": {
+      "description": "Profil avec plusieurs langues",
+      "data": {
+        "telephone": "+33612345678",
+        "sexe": "F",
+        "nationalite": "Britannique",
+        "ville_residence": "Toulouse",
+        "parcours_academique": "A-Levels 2019",
+        "niveau_etude_actuel": "Licence 2",
+        "domaine_etude": "Langues Étrangères Appliquées",
+        "etablissement_actuel": "Université Toulouse Jean Jaurès",
+        "moyenne_generale": "15.2",
+        "annee_diplome_prevue": "2026",
+        "langue": "Anglais",
+        "niveau_francais": "Fluent (C1)",
+        "niveau_anglais": "Native",
+        "date_naissance": "2004-11-03",
+        "autres_langues": [
+          "Espagnol C1",
+          "Allemand B2",
+          "Portugais B1",
+          "Mandarin A2"
+        ],
+        "experiences_academiques": "Erasmus+ Exchange Program 2024",
+        "activites_extrascolaires": "Language Exchange Coordinator, Translation Club",
+        "engagement_associatif": "Secretary International Bureau",
+        "recompenses_distinctions": [
+          "Erasmus Excellence Award",
+          "Translation Competition Winner"
+        ]
+      }
+    }
+  },
+  "webhook_payload_examples": {
+    "description": "Exemples de payloads envoyés au webhook N8N",
+    "on_profile_creation": {
+      "timestamp": "2025-12-18T20:15:30Z",
+      "action": "profile_updated",
+      "user": {
+        "id": 1,
+        "email": "jean.dupont@example.com",
+        "nom": "Dupont",
+        "prenom": "Jean"
+      },
+      "profile": {
+        "id": 1,
+        "telephone": "+33612345678",
+        "sexe": "M",
+        "nationalite": "Français",
+        "ville_residence": "Paris",
+        "parcours_academique": "Baccalauréat Scientifique 2020",
+        "niveau_etude_actuel": "Licence 3",
+        "domaine_etude": "Informatique",
+        "etablissement_actuel": "Université Paris-Dauphine",
+        "moyenne_generale": "14.5",
+        "annee_diplome_prevue": "2026",
+        "langue": "Français",
+        "niveau_francais": "Natif",
+        "niveau_anglais": "Fluent (C1)",
+        "date_naissance": "2003-05-15",
+        "autres_langues": [
+          "Espagnol B2",
+          "Allemand A2"
+        ],
+        "experiences_academiques": "Stage chez Google été 2024",
+        "activites_extrascolaires": "Tennis, Débat oratoire",
+        "engagement_associatif": "Président du club informatique",
+        "recompenses_distinctions": [
+          "Bourse d'excellence académique",
+          "Prix de programmation 2024"
+        ]
+      }
+    },
+    "on_profile_update": {
+      "timestamp": "2025-12-18T21:30:45Z",
+      "action": "profile_updated",
+      "user": {
+        "id": 1,
+        "email": "jean.dupont@example.com",
+        "nom": "Dupont",
+        "prenom": "Jean"
+      },
+      "profile": {
+        "id": 1,
+        "telephone": "+33612345678",
+        "sexe": "M",
+        "nationalite": "Français",
+        "ville_residence": "Paris",
+        "parcours_academique": "Baccalauréat Scientifique 2020",
+        "niveau_etude_actuel": "Licence 3",
+        "domaine_etude": "Informatique",
+        "etablissement_actuel": "Université Paris-Dauphine",
+        "moyenne_generale": "15.5",
+        "annee_diplome_prevue": "2026",
+        "langue": "Français",
+        "niveau_francais": "Excellent (C2)",
+        "niveau_anglais": "Native-like (C2)",
+        "date_naissance": "2003-05-15",
+        "autres_langues": [
+          "Espagnol B2",
+          "Allemand A2"
+        ],
+        "experiences_academiques": "Stage chez Google été 2024, Stage chez Apple printemps 2025",
+        "activites_extrascolaires": "Tennis, Débat oratoire, Hackathons",
+        "engagement_associatif": "Président du club informatique, Mentor",
+        "recompenses_distinctions": [
+          "Bourse d'excellence académique",
+          "Prix de programmation 2024",
+          "Best Innovation Award 2025"
+        ]
+      }
+    }
+  },
+  "curl_commands": {
+    "create_profile": {
+      "description": "Créer un profil via cURL",
+      "command": "curl -X POST http://localhost:8000/api/profiles \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"sexe\": \"M\",\n    \"nationalite\": \"Français\",\n    \"telephone\": \"+33612345678\",\n    \"niveau_etude_actuel\": \"Licence 3\",\n    \"domaine_etude\": \"Informatique\",\n    \"moyenne_generale\": \"14.5\"\n  }'"
+    },
+    "get_my_profile": {
+      "description": "Récupérer son propre profil",
+      "command": "curl -X GET http://localhost:8000/api/profiles \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\""
+    },
+    "update_profile": {
+      "description": "Mettre à jour un profil",
+      "command": "curl -X PATCH http://localhost:8000/api/profiles/1 \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"moyenne_generale\": \"15.5\",\n    \"niveau_francais\": \"Excellent\"\n  }'"
+    },
+    "delete_profile": {
+      "description": "Supprimer un profil",
+      "command": "curl -X DELETE http://localhost:8000/api/profiles/1 \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\""
+    },
+    "send_to_webhook": {
+      "description": "Tester l'envoi au webhook N8N directement",
+      "command": "curl -X POST https://iandrianinameeting.app.n8n.cloud/webhook-test/post \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"action\": \"profile_updated\",\n    \"timestamp\": \"2025-12-18T20:15:30Z\",\n    \"user\": {\n      \"id\": 1,\n      \"email\": \"test@example.com\",\n      \"nom\": \"Dupont\",\n      \"prenom\": \"Jean\"\n    },\n    \"profile\": {\n      \"id\": 1,\n      \"sexe\": \"M\",\n      \"nationalite\": \"Français\",\n      \"telephone\": \"+33612345678\",\n      \"niveau_etude_actuel\": \"Licence 3\",\n      \"domaine_etude\": \"Informatique\",\n      \"moyenne_generale\": \"14.5\"\n    }\n  }'"
+    }
+  }
+}

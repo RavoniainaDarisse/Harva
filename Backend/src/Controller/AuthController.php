@@ -73,13 +73,16 @@ final class AuthController extends AbstractController
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
-        if (empty($data['email']) || empty($data['password'])) {
-            return $this->json(['error' => 'Email and password required'], 400);
+        if (empty($data['email']) || empty($data['password']) || empty($data['nom']) || empty($data['prenom'])) {
+            return $this->json(['message' => 'Email, mot de passe, nom ou prénom manquant'], 400);
         }
 
         $user = new User();
         $user->setEmail($data['email']);
         $user->setPassword($hasher->hashPassword($user, $data['password']));
+        $user->setNom($data['nom']);
+        $user->setPrenom($data['prenom']);
+
 
         $em->persist($user);
         $em->flush();
@@ -87,5 +90,5 @@ final class AuthController extends AbstractController
         return $this->json(['message' => 'User created'], 201);
     }
 
-   
+
 }

@@ -4,7 +4,7 @@ set -e
 chown -R www-data:www-data /var/www/html
 
 # attendre MySQL (optionnel)
-until php -r "new PDO('mysql:host=database;dbname=${DB_NAME}', '${DB_USER}');" 2>/dev/null; do
+until php -r "new PDO('mysql:host=database;dbname=${DB_NAME}', '${DB_USER}', '${DB_PASSWORD}');" 2>/dev/null; do
   echo "⏳ Waiting for MySQL..."
   sleep 2
 done
