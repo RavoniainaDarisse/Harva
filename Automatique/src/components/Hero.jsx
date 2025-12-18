@@ -1,8 +1,45 @@
 import { ArrowRight } from "lucide-react";
 import ScheduleButton from "./ScheduleButton/ScheduleButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getMe, sendProfileToN8n } from "@/services/profile.service";
+import ScheduleSubmit from "./ScheduleButton/ScheduleSubmit";
 
 export default function Hero() {
+
+    const navigate = useNavigate()
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const data = await getMe()
+        console.log(data)
+        setUser(data)
+      } catch (error) {
+        console.error("Erreur récupération utilisateur", error)
+      }
+    }
+
+    fetchUser()
+  }, [])
+
+  const handleSendToN8n = async () => {
+    if (!user?.profile_id) return
+
+    setLoading(true)
+
+    try {
+      await sendProfileToN8n(user.profile_id)
+      navigate("/match")
+    } catch (error) {
+      console.error("Erreur envoi N8N", error)
+      alert("Erreur lors de l’envoi du profil")
+    } finally {
+      setLoading(false)
+    }
+  }
     return (
         <section className="relative min-h-screen overflow-hidden ">
 
@@ -20,8 +57,9 @@ export default function Hero() {
                     Retirement is a journey.
                     Take it with confidence.
                 </p>
-                
-                <ScheduleButton to="match" text="matches"/>
+
+                <ScheduleSubmit  text={loading ? "Envoi..." : "matches"}
+          onClick={handleSendToN8n}  />
             </div>
 
             {/* ILLUSTRATION BACKGROUND */}

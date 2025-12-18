@@ -1,3 +1,5 @@
+import { ArrowRight } from "lucide-react";
+
 export default function ScheduleSubmit({
     text = "Schedule a meeting",
     type = "button",

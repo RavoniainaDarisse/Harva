@@ -15,3 +15,39 @@ export const saveProfile = async (profileData) => {
 
   return response.data
 }
+
+
+export const getMe = async () => {
+    const token = localStorage.getItem("token")
+    if (!token) throw new Error("Utilisateur non authentifié")
+  
+    const response = await api.get("/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
+    })
+  
+    return response.data
+  }
+
+
+  export const sendProfileToN8n = async (profileId) => {
+    const token = localStorage.getItem("token")
+    if (!token) throw new Error("Utilisateur non authentifié")
+    if (!profileId) throw new Error("ID du profil manquant")
+  
+    const response = await api.post(
+      `/profiles/${profileId}/send-to-n8n`,
+      null, // IMPORTANT
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      }
+    )
+  
+    return response.data
+  }
+  
