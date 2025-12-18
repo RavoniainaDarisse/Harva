@@ -7,6 +7,9 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import EducationPage from './pages/EducationPage/EducationPage'
 import SidebarWrapper from './components/sidebar/sidebar-wrapper'
+import MatchesPage from './pages/MatchesPage/MatchesPage'
+import VerifyPage from './pages/VerifyPage/VerifyPage'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import Dashboard from './pages/Dashboard'
 
 function App() {
@@ -18,7 +21,9 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/education" element={<EducationPage />} />
-        <Route path="/sidebar" element={<SidebarWrapper />} />
+        <Route path="/match" element={<MatchesPage />} />
+        <Route path="/verify" element={<VerifyPage />} />
+        <Route path="/profileAdd" element={<ProfilePage />} />
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
       </Routes>
     </main>

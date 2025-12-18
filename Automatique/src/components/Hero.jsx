@@ -1,132 +1,62 @@
-import React, { useRef, useState } from 'react'
-import Button from './Button';
-import { TiLocationArrow } from 'react-icons/ti';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-
-import { ScrollTrigger } from 'gsap/all';
-
-gsap.registerPlugin(ScrollTrigger)
+import { ArrowRight } from "lucide-react";
+import ScheduleButton from "./ScheduleButton/ScheduleButton";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
-    const [currentIndex, setCurrentIndex] = useState(1);
-    const [hasClicked, setHasClicked] = useState(false);
-    const [isLoading, setIsLoading] = useState(true)
-    const [loadedVideos, setLoadedVideos] = useState(0)
+    return (
+        <section className="relative min-h-screen overflow-hidden bg-cream">
 
-    const totalVideos = 4;
-    const nextVideoRef = useRef(null);
- 
-    const handleVideoLoad = () =>{
-        setLoadedVideos(prev => prev+1)
-    }
+            {/* HEADER */}
 
-    const upcomingVideoIndex = (currentIndex % totalVideos) +1;
 
-    const handleMiniVdClick = () =>{
-        setHasClicked(true);
+            {/* HERO CONTENT */}
+            <div className="z-10 px-6 pt-12 mx-auto text-center max-w-10xl center md:px-16 md:pt-24">
+                <h1 className="font-serif text-4xl leading-tight text-center md:text-8xl text-dark">
+                    A retirement roadmap <br className="hidden md:block" />
+                    for everyone.
+                </h1>
 
-        setCurrentIndex(upcomingVideoIndex);
-    }
-
-    useGSAP( () =>{
-        if(hasClicked)
-        {
-            gsap.set('#next-video', {visibility: 'visible'});
-
-            gsap.to('#next-video',{
-                transformOrigin: 'center center',
-                scale: 1,
-                width:'100%',
-                height:'100%',
-                duration:1,
-                ease:'power1.inOut',
-                onStart:() => nextVideoRef.current.play()
-            })
-
-            gsap.from('#current-video',{
-                transformOrigin: 'center center',
-                scale: 0,
-                duration:1.5, 
-                ease:'power1.inOut',
-            })
-        }
-    }, {dependencies: [currentIndex], revertOnUpdate: true})
-
-    useGSAP(( )=>{
-        gsap.set('#video-frame',{
-            clipPath: 'polygon(14% 0%, 72% 0%,90% 90%,0% 100% )',
-            borderRadius: '0 0 40% 10%'
-        })
-
-        gsap.from('#video-frame',{
-            clipPath: 'polygon(0% 0%, 100% 0%,100% 100%,0% 100% )',
-            borderRadius: '0 0 0 0',
-            ease:'power1.inOut',
-            scrollTrigger:{
-                trigger:'#video-frame',
-                start:'center center',
-                end:'bottom center',
-                scrub:true
-            }
-        })
-    })
-
-    const getVideoSrc =(index) => `videos/hero-${index}.mp4`
-
-  return (
-    <div className='relative bg-[#dfdff0] w-screen overflow-x-hidden h-dvh'>
-        <div id='video-frame' className='relative z-10 w-screen overflow-hidden rounded-lg h-dvh bg-blue-75'>
-            <div>
-                <div className='absolute z-50 overflow-hidden rounded-lg cursor-pointer mask-clip-path absolute-center size-64'>
-                    <div onClick={handleMiniVdClick} className='transition-all duration-500 ease-in origin-center scale-50 opacity-0 hover:scale-100 hover:opacity-100'>
-                        <video
-                        ref={nextVideoRef}
-                        src={getVideoSrc(upcomingVideoIndex)}
-                        loop
-                        muted
-                        id='current-video'
-                        className='object-cover object-center origin-center scale-150 size-64'
-                        onLoadedData={handleVideoLoad}
-                        />
-                    </div>
-                </div>
-                <video 
-                ref={nextVideoRef}
-                src= {getVideoSrc(currentIndex )}
-                id='next-video'
-                loop
-                muted
-                className='absolute z-20 invisible object-cover object-center absolute-center size-64'
-                onLoadedData={handleVideoLoad}
-                />
-                <video 
-                src={getVideoSrc(currentIndex == totalVideos -1 ? 1 : currentIndex)}
-                // autoPlay
-                loop
-                muted
-                className='absolute top-0 left-0 object-cover object-center size-full'
-                onLoadedData={handleVideoLoad}
-                />
+                <p className="max-w-xl mx-auto my-10 mt-6 text-lg font-semibold text-dark/80">
+                    Retirement is a journey.
+                    Take it with confidence.
+                </p>
+                
+                <ScheduleButton to="match" text="matches"/>
             </div>
-            <h1 className='absolute z-40 special-font hero-heading bottom-5 right-5 text-blue-75'>
-                G<b>a</b>ming
-            </h1>
 
-            <div className="absolute top-0 left-0 z-40 size-full">
-                <div className="px-5 mt-24 sm-px-10">
-                    <h1 className='text-blue-100 special-font hero-heading'>redefi<b>n</b>e</h1>
-                    <p className='mb-5 text-blue-100 max-w-64 font-robert-regular'>
-                        Enter the Metagame Layer <br />
-                        Unleash the Play Economy
-                    </p>
-                    <Button id="watch-trailer" title="Watch Trailer" leftIcon={<TiLocationArrow />} containerClass="bg-yellow-300 flex-center gap-1" />
+            {/* ILLUSTRATION BACKGROUND */}
+            {/* <div className="absolute bottom-0 left-0 w-full">
+        <img
+          src="/heroTop.jpg"
+          alt="Landscape Illustration"
+          className="hidden w-full md:block"
+        />
+
+        <img
+          src="/herotopMobile.jpg"
+          alt="Landscape Mobile"
+          className="block w-full md:hidden"
+        />
+      </div> */}
+
+            <div className="text-center mt-80">
+                <p className="mb-6 font-serif text-sm italic">
+                    People are talking
+                </p>
+
+                <div className="flex flex-wrap items-center justify-center gap-10 text-sm opacity-80">
+                    <span>yahoo! finance</span>
+                    <span>Nasdaq</span>
+                    <span>Aol.</span>
+                    <span>GO Banking Rates</span>
+                    <span>NewsBreak</span>
+                    <span>msn</span>
+                    <span>AARP</span>
+                    <span>CBS</span>
                 </div>
             </div>
-        </div>
-        <h1 className='absolute  special-font hero-heading bottom-5 right-5 text-black'>
-                G<b>a</b>ming
-            </h1>
-    </div>
-  )
+
+
+        </section>
+    );
 }
