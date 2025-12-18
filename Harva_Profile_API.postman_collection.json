@@ -1,0 +1,224 @@
+{
+  "info": {
+    "_postman_id": "harva-profile-api",
+    "name": "Harva Profile API",
+    "description": "API CRUD complète pour la gestion des profils utilisateurs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\",\n  \"nom\": \"Dupont\",\n  \"prenom\": \"Jean\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile - My Profile",
+      "item": [
+        {
+          "name": "Get My Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/profiles",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "profiles"]
+            }
+          }
+        },
+        {
+          "name": "Create/Update My Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"telephone\": \"+33612345678\",\n  \"sexe\": \"M\",\n  \"nationalite\": \"Français\",\n  \"ville_residence\": \"Paris\",\n  \"parcours_academique\": \"Baccalauréat Scientifique\",\n  \"niveau_etude_actuel\": \"Licence 3\",\n  \"domaine_etude\": \"Informatique\",\n  \"etablissement_actuel\": \"Université Paris-Dauphine\",\n  \"moyenne_generale\": \"14.5\",\n  \"annee_diplome_prevue\": \"2026\",\n  \"langue\": \"Français\",\n  \"niveau_francais\": \"Natif\",\n  \"niveau_anglais\": \"Fluent (C1)\",\n  \"date_naissance\": \"2003-05-15\",\n  \"autres_langues\": [\"Espagnol\", \"Allemand\"],\n  \"experiences_academiques\": \"Stage chez XYZ en 2024\",\n  \"activites_extrascolaires\": \"Tennis, Débat\",\n  \"engagement_associatif\": \"Président du club informatique\",\n  \"recompenses_distinctions\": [\"Bourse d'excellence\", \"Prix de l'excellence\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/profiles",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "profiles"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile - Specific Profile",
+      "item": [
+        {
+          "name": "Get Profile by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/profiles/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "profiles", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile Field (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"niveau_francais\": \"Excellent (C2)\",\n  \"moyenne_generale\": \"15.0\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/profiles/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "profiles", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Profile",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/profiles/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "profiles", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile - Admin Only",
+      "item": [
+        {
+          "name": "List All Profiles (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/profiles/list/all",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "profiles", "list", "all"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": "YOUR_JWT_TOKEN_HERE",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "YOUR_ADMIN_JWT_TOKEN_HERE",
+      "type": "string"
+    }
+  ]
+}
